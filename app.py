@@ -31,8 +31,23 @@ async def send_whatsapp_text(to_phone: str, text: str):
 
     url = f"https://graph.facebook.com/v19.0/{WHATSAPP_PHONE_NUMBER_ID}/messages"
 
-    payload = {
-        "messaging_product": "whatsapp",
+    payload =import json
+
+@app.post("/webhook")
+async def receive_webhook(request: Request):
+    if repo is None:
+        raise HTTPException(status_code=500, detail="Google Sheets não configurado")
+
+    payload = await request.json()
+
+    # LOG 1: mostra o tipo de evento e um pedaço do payload
+    print("WEBHOOK RECEBIDO:", json.dumps(payload)[:800])
+
+    from_phone, text = extract_message(payload)
+
+    # LOG 2: mostra o que seu extractor pegou
+    print("EXTRACT:", from_phone, text)...
+    {"messaging_product": "whatsapp",
         "to": to_phone,
         "type": "text",
         "text": {
