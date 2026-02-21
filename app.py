@@ -45,7 +45,7 @@ async def receive_webhook(request: Request):
     from_phone, text = extract_message(payload)
 
     # LOG 2: mostra o que seu extractor pegou
-    print("EXTRACT:", from_phone, text)...
+    print("EXTRACT:", from_phone, text)
     {"messaging_product": "whatsapp",
         "to": to_phone,
         "type": "text",
