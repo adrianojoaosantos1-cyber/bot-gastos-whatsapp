@@ -1,6 +1,7 @@
 import os
 from fastapi import FastAPI, Request, HTTPException
 import httpx
+import json
 
 from sheets import SheetsRepo
 from parser import parse_message
@@ -30,8 +31,6 @@ async def send_whatsapp_text(to_phone: str, text: str):
         raise RuntimeError("WHATSAPP_TOKEN ou WHATSAPP_PHONE_NUMBER_ID não configurados")
 
     url = f"https://graph.facebook.com/v19.0/{WHATSAPP_PHONE_NUMBER_ID}/messages"
-
-    payload =import json
 
 @app.post("/webhook")
 async def receive_webhook(request: Request):
