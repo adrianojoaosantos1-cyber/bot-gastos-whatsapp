@@ -46,26 +46,7 @@ async def receive_webhook(request: Request):
 
     # LOG 2: mostra o que seu extractor pegou
     print("EXTRACT:", from_phone, text)
-    {"messaging_product": "whatsapp",
-        "to": to_phone,
-        "type": "text",
-        "text": {
-            "body": text
-        }
-    }
-
-    headers = {
-        "Authorization": f"Bearer {WHATSAPP_TOKEN}",
-        "Content-Type": "application/json"
-    }
-
-    async with httpx.AsyncClient(timeout=10) as client:
-        response = await client.post(url, json=payload, headers=headers)
-
-    if response.status_code >= 300:
-        raise RuntimeError(f"Erro ao enviar mensagem: {response.text}")
-
-
+    
 # =========================
 # Verificação do Webhook
 # =========================
